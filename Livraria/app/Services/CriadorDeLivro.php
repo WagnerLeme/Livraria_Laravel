@@ -25,7 +25,7 @@ class CriadorDeLivro
     {
         $livro = null;
         DB::beginTransaction();
-        $livro = Livro::create(['nome' => $nomeSerie]);
+        $livro = Livro::create($request->all());
         
         DB::commit();
     

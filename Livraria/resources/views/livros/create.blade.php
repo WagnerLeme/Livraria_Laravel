@@ -6,11 +6,26 @@
 
 @section('conteudo')
 
-<form method="POST">
-        @csrf
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
+<form method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="container">
             <div class="row">
+                
+                <div class="col col-12">
+                    <label for="imagem">Imagem do Livro</label>
+                    <input type="file" id="imagem" name="imagem" class="from-control-file">
+                </div>
+
                 <div class="col col-2">
                     <label for="isbn">ISBN</label>
                     <input type="text" class="form-control mb-3" name="isbn">
@@ -52,12 +67,12 @@
                 </div>
 
                 <div class="col col-6">
-                <label for="numeroPagina">Categoria</label>
+                <label for="categoria">Categoria</label>
                 <select type="text" class="form-select" name="categoria">
                     <option value="" disabled selected">Categoria</option>
-                    <option value="Leitura e Comportamento">1</option>
-                    <option value="Técnico Profissionais">2</option>
-                    <option value="Equilíbrio Pessoal">3</option>
+                    <option value="Leitura e Comportamento">Leitura e Comportamento</option>
+                    <option value="Técnico Profissionais">Técnico Profissionais</option>
+                    <option value="Equilíbrio Pessoal">Equilíbrio Pessoal</option>
                 </select>
                 </div>
 

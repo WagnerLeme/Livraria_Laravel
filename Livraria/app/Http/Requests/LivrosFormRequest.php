@@ -9,7 +9,7 @@ class LivrosFormRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -19,10 +19,13 @@ class LivrosFormRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'nome' => 'required | min:2'
+            'nome', 'isbn', 'edicao', 'editora', 'autor', 'dataPublicacao', 'idioma', 'numeroPagina', 'categoria', 'quantidade' => 'required',
+
+            'nome' => "min:3"
+
         ];
     }
     
@@ -30,7 +33,24 @@ class LivrosFormRequest extends FormRequest
     {
         return [
             'nome.required' => 'O campo :attribute é obrigatório',
-            'nome.min' => 'O campo nome deve contem pelo menos 2 caracteres'
+            'isbn.required' => 'O campo :attribute é obrigatório',
+            'edicao.required' => 'O campo :attribute é obrigatório',
+            'editora.required' => 'O campo :attribute é obrigatório',
+            'autor.required' => 'O campo :attribute é obrigatório',
+            'dataPublicacao.required' => 'O campo :attribute é obrigatório',
+            'idioma.required' => 'O campo :attribute é obrigatório',
+            'numeroPagina.required' => 'O campo :attribute é obrigatório',
+            'categoria.required' => 'O campo :attribute é obrigatório',
+            'quantidade.required' => 'O campo :attribute é obrigatório',
+            
+            
+            
+            'nome.min' => 'O campo nome precisa ter pelo menos três caracteres',
+            'edicao.min' => 'O campo nome precisa ter pelo menos três caracteres',
+            'editora.min' => 'O campo nome precisa ter pelo menos três caracteres',
+            'autor.min' => 'O campo nome precisa ter pelo menos três caracteres',
+            'idioma.min' => 'O campo nome precisa ter pelo menos três caracteres',
+            'categoria.min' => 'O campo nome precisa ter pelo menos três caracteres',
         ];
     }
 }

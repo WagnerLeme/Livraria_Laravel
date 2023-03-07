@@ -9,7 +9,19 @@ class Livro extends Model
 {
 
     public $timestamps = false;
-    protected $fillable = ['nome'];
+    protected $fillable = [
+        'imagem',
+        'isbn',
+        'nome',
+        'edicao',
+        'editora',
+        'autor', 
+        'dataPublicacao',
+        'idioma',
+        'numeroPagina', 
+        'categoria', 
+        'quantidade'
+    ];
 
     public function livro()
     {

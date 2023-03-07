@@ -11,7 +11,8 @@
 
     <title>Livraria</title>
 </head>
-<body>    
+<body> 
+
     <div class="container">
         <div class="container p-3 p-3 mb-2 bg-dark">
             <h1 class="text-center text-white" >@yield('cabecalho')</h1>

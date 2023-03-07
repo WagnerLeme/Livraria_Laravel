@@ -10,7 +10,10 @@ class Livros extends Migration
     public function up()
     {
         Schema::create('livros', function (Blueprint $table) {
-            $table -> string('isbn') -> primary();
+            $table -> increments('id');
+            //$table -> integer('fk_id_pessoa');
+            $table -> string('imagem') -> nullable();
+            $table -> string('isbn') -> unique();
             $table -> string('nome');
             $table -> string('edicao');
             $table -> string('editora');
@@ -20,9 +23,13 @@ class Livros extends Migration
             $table -> integer('numeroPagina');
             $table -> string('categoria');
             $table -> integer('quantidade');
+
+            
+            //$table -> Integer('id_ pessoa_livro');
+            //$table -> foreign('id_ pessoa_livro') -> references('id') -> on ('pessoa_livro') -> onDelete('cascade') -> onUpdate('cascade');
+            
         });
     }
-
     
     public function down()
     {

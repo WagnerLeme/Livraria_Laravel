@@ -33,7 +33,7 @@ class PessoaController extends Controller
             'telefone' => $request->telefone,
             'email' => $request->email,
             'endereco' => $request->endereco,
-            'senha' => bcrypt($request->telefone),
+            'senha' => bcrypt($request->senha),
             'permissao' => $request->permissao,
 
 
@@ -50,4 +50,25 @@ class PessoaController extends Controller
 
         return redirect()->route('listar_usuarios');
     }
+
+  public function edit($id)
+  {
+      $usuario = Pessoa::find($id);
+
+      return view('usuarios.edit', compact('usuario'));
+  }
+  public function update(Request $request){
+    
+    Pessoa::findOrfail($request->id)->update([
+        
+        'nome' => $request->nome,
+        'telefone' => $request->telefone,
+        'email' => $request->email,
+        'endereco' => $request->endereco,
+        'senha' => bcrypt($request->senha),
+        'permissao' => $request->permissao,
+   
+    $request->all()]);
+    return redirect()->route('listar_usuarios');
+  }
 }

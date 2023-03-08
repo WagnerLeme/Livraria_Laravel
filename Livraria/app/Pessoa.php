@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pessoa extends Model 
 {
     public $timestamps = false;
+    protected $table = 'pessoas';
     protected $fillable = [
         'nome',
         'telefone',

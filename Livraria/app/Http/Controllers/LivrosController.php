@@ -26,35 +26,19 @@ class LivrosController extends Controller
     public function store(LivrosFormRequest $request)
     {
 
-        $livro = new Livro;
-
-       // $livro-> isbn = $request->isbn;
-       // $livro-> nome = $request->isbn;
-       // $livro-> edicao = $request->isbn;
-       // $livro-> editora = $request->isbn;
-       // $livro-> autor = $request->isbn;
-       // $livro-> dataPublicacao = $request->isbn;
-       // $livro-> idioma = $request->isbn;
-       // $livro-> numeroPagina = $request->isbn;
-       // $livro-> categoria = $request->isbn;
-       // $livro-> quantidade = $request->isbn;
+        $livroImg = new Livro;
 
         if($request->hasFile('imagem') && $request->file('imagem') -> isValid()){
-
-            $requestImagem = $request->imagem;
-
-            $extension = $requestImagem->extension();
-
-            $imagemName = md5($requestImagem -> getClientOriginalName() . strtotime('now')). "." . $extension;
-
-            $requestImagem -> move(public_path('img/livros'), $imagemName);
-
-            $livro->imagem = $imagemName;
+           
+          $requestImagem = $request->imagem;
+          $extension = $requestImagem->extension();
+          $imagemName = $requestImagem -> getClientOriginalName(); //. strtotime(). "." . $extension;
+          $requestImagem -> move(public_path('imagem'), $imagemName);
+          $livroImg->imagem = $imagemName;
         }
-
      
          $livro = Livro::create([
-            'imagem' => $livro,
+            'imagem' => $livroImg,
             'isbn' => $request -> isbn,
             'nome' => $request -> nome,
             'edicao' => $request -> edicao,
@@ -66,7 +50,9 @@ class LivrosController extends Controller
             'categoria' => $request -> categoria,
             'quantidade' => $request -> quantidade
          ]);
-         $request->session() -> flash ('mensagem',"O livro {$livro->nome} foi cadastrado com sucesso.");
+
+        $request->session() 
+            -> flash ('mensagem',"O livro {$livro->nome} foi cadastrado com sucesso.");
      
         return redirect()->route('listar_livros');
     }

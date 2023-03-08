@@ -1,0 +1,9 @@
+h1{
+   background: rgb(194, 197, 197);
+   text-align: center;
+   color: rgb(3, 3, 90);
+}
+
+#adicionar{
+    display: flex;
+}

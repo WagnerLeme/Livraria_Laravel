@@ -6,84 +6,50 @@
 @endsection
 
 @section('conteudo')
-@if(!empty($mensagem))
-    <div class="alert alert-success">
-        {{$mensagem}}
-    </div>
-@endif
 
-        <section class="tabela">
-            <h3 class="center">Lista de usuários</h3>
-                <table class="centered bordered">
-                    <thead>
-                    <tr>
-                        <th>NOME</th>
-                        <th>TELEFONE</th>
-                        <th>EMAIL</th>
-                        <th>ENDEREÇO</th>
-                        <th>PERMISSÃO</th>
-                        <th>OPÇÃO</th>
-                    </tr>
-                </thead>
-                <tbody>
+@include('erros', ['erros' => $errors])
 
-                </tbody>
-            </table>
-        </section>
+<a href="{{ route('cadastrar_usuarios') }}" class="btn btn-dark mb-2">Adicionar</a>
+   
+    
+<table class="table">
+    <thead>
+        <tr class="table-primary">
+            <th scope="col">ID</th>
+            <th scope="col">NOME</th>
+            <th scope="col">TELEFONE </th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">ENDEREÇO</th>
+            <th scope="col">PERMISSÃO</th>
+            <th scope="col">OPÇÕES</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($usuarios as $usuario)
+            <tr>
+                <td>{{ $usuario->id}}</td>
+                <td>{{ $usuario->nome}}</td>
+                <td>{{ $usuario->telefone}}</td>
+                <td>{{ $usuario->email}}</td>
+                <td>{{ $usuario->endereco}}</td>
+                <td>{{ $usuario->permissao}}</td>
+                <td>
 
+                <span class="d-flex">
+                    <a href="/usuarios/editar/{{$usuario->id}}" class="btn btn-info btn-sm m-1">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <form method="post" action="/usuarios/remover/{{$usuario->id}}" onsubmit="return confirm('Você tem certeza que deseja excluir o usuário {{addslashes($usuario->nome)}}')">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm m-1"><i class="fa-solid fa-trash"></i></button>
+                    </form>
+                </span>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-        <script>
-
-        function insereTabela() {
-            var corpoTabela = $(".tabela").find("tbody");
-
-            var linha = novaLinha(usuario, numPalavras);
-            linha.find(".botao-remover").click(removeLinha);
-
-            corpoTabela.append(linha);
-            $(".placar").slideDown(500);
-            scrollPlacar();
-        }
-
-        function novaLinha(usuario, palavras) {
-            var linha = $("<tr>");
-            var colunaUsuario = $("<td>").text(usuario);
-            var colunaPalavras = $("<td>").text(palavras);
-            var colunaRemover = $("<td>");
-
-            var link = $("<a>").addClass("botao-remover").attr("href", "#");
-            var icone = $("<i>").addClass("small").addClass("material-icons").text("delete");
-
-            link.append(icone);
-
-            colunaRemover.append(link);
-
-            linha.append(colunaUsuario);
-            linha.append(colunaPalavras);
-            linha.append(colunaRemover);
-
-            return linha;
-        }
-        </script>
-
-
-
-    <a href="{{ route('cadastrar_usuarios') }}" class="btn btn-dark mb-2">Adicionar</a>
-
-    <!--Salvar    <ul class="list-group">
-        @foreach($usuarios as $usuario)
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{ $usuario->nome}}
-               <form method="post" action="/usuarios/remover/{{$usuario->id}}" onsubmit="return confirm('Você tem certeza que deseja excluir o usuário {{addslashes($usuario->nome)}}')">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-               </form>
-            </li>
-        @endforeach
-    </ul>
-
-    -->
+                </td>
+            </tr>
+            @endforeach
+    </tbody>
+</table>
 
 @endsection

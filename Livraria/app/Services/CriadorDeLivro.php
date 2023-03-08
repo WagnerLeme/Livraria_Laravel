@@ -10,6 +10,7 @@ class CriadorDeLivro
 {
     public function criarLivro(
      
+        string $imagem,
         string $isbn, 
         string $nome,
         string $edicao, 
@@ -30,7 +31,7 @@ class CriadorDeLivro
         DB::commit();
     
     
-        return $Livro;
+        return $livro;
     
     }
 }

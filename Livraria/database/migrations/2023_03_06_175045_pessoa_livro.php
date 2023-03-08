@@ -19,13 +19,6 @@ class PessoaLivro extends Migration
         $table -> string('email_pessoa');
         $table -> boolean('devolvido');
 
-        //$table -> unsignedBigInteger('id_user');
-        //    $table -> foreign('id_user') 
-        //        -> references('id') 
-        //        -> on ('pessoas') 
-        //        -> onDelete('cascade') 
-        //        -> onUpdate('cascade');
-                //
         });
     }
 

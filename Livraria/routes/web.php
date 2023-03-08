@@ -25,3 +25,14 @@ Route::get('/usuarios', 'App\Http\Controllers\PessoaController@index') -> name('
 Route::get('/cadastro/usuarios', 'App\Http\Controllers\PessoaController@create') -> name('cadastrar_usuarios');
 Route::post('/cadastro/usuarios', 'App\Http\Controllers\PessoaController@store');
 Route::delete('/usuarios/remover/{id}', 'App\Http\Controllers\PessoaController@destroy');
+Route::get('/usuarios/editar/{id}', 'App\Http\Controllers\PessoaController@edit') -> name('editar_usuario');
+Route::post('/usuarios/atualizar/{id}', 'App\Http\Controllers\PessoaController@update') -> name('update_usuario');
+
+
+/**------------ Rotas Autenticação ----------------- */
+Route::get('/entrar', 'App\Http\Controllers\EntrarController@index');
+Route::post('/entrar', 'App\Http\Controllers\EntrarController@entrar');
+
+
+
+/**------------ Rotas imagem ----------------- */

@@ -15,7 +15,7 @@ class LivrosController extends Controller
 
         $mensagem = $request -> session() -> get('mensagem');
 
-        return view('livros.index', compact('livros', 'mensagem'));
+        return view('livros.livros', compact('livros', 'mensagem'));
     }
 
     public function create()
@@ -65,4 +65,48 @@ class LivrosController extends Controller
         return redirect()->route('listar_livros');
     }
 
+    public function edit($id)
+    {
+        $livro = Livro::find($id);
+  
+        return view('livros.edit', compact('livro'));
+    }
+
+    public function update(Request $request){
+    
+        Livro::findOrfail($request->id)->update([
+
+            'isbn' => $request->isbn,
+            'nome' => $request->nome,
+            'edicao' => $request->edicao,
+            'autor' => $request->autor,
+            'dataPublicacao' => $request->dataPublicacao,
+            'idioma' => $request->idioma,
+            'numeroPagina' => $request->numeroPagina,
+            'categoria' => $request->categoria,
+            'quantidade' => $request->quantidade,
+
+        $request->all()]);
+
+        return redirect()->route('listar_livros');
+      }
+    
+      public function emprestar(Request $request)
+      {
+        $livros = Livro::query() -> orderBy('nome') -> get();
+
+        $mensagem = $request -> session() -> get('mensagem');
+
+        return view('livros.index', compact('livros', 'mensagem'));
+      }
+     
+      public function devolver()
+      {
+
+      }
+
+      public function historico()
+      {
+
+      }
 }

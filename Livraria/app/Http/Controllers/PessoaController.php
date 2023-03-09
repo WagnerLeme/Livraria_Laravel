@@ -19,6 +19,7 @@ class PessoaController extends Controller
         return view('usuarios.index', compact('usuarios', 'mensagem'));
 
     }
+
     public function create()
     {
         return view('usuarios.create');
@@ -51,24 +52,27 @@ class PessoaController extends Controller
         return redirect()->route('listar_usuarios');
     }
 
-  public function edit($id)
-  {
-      $usuario = Pessoa::find($id);
+    public function edit($id)
+    {
+        $usuario = Pessoa::find($id);
 
-      return view('usuarios.edit', compact('usuario'));
-  }
-  public function update(Request $request){
-    
-    Pessoa::findOrfail($request->id)->update([
+        return view('usuarios.edit', compact('usuario'));
+    }
+
+    public function update(Request $request)
+    {
         
-        'nome' => $request->nome,
-        'telefone' => $request->telefone,
-        'email' => $request->email,
-        'endereco' => $request->endereco,
-        'senha' => bcrypt($request->senha),
-        'permissao' => $request->permissao,
+        Pessoa::findOrfail($request->id)->update([
+            
+            'nome' => $request->nome,
+            'telefone' => $request->telefone,
+            'email' => $request->email,
+            'endereco' => $request->endereco,
+            'senha' => bcrypt($request->senha),
+            'permissao' => $request->permissao,
+    
+        $request->all()]);
+        return redirect()->route('listar_usuarios');
+    }
    
-    $request->all()]);
-    return redirect()->route('listar_usuarios');
-  }
 }

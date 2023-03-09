@@ -9,8 +9,6 @@
 
 @include('erros', ['erros' => $errors])
 
-<a href="{{ route('cadastrar_usuarios') }}" class="btn btn-dark mb-2">Adicionar</a>
-   
     
 <table class="table">
     <thead>
@@ -34,10 +32,13 @@
                 <td>{{ $usuario->endereco}}</td>
                 <td>{{ $usuario->permissao}}</td>
                 <td>
-
+                    
                 <span class="d-flex">
+                    <a href="{{ route('cadastrar_usuarios') }}" class="btn btn-dark btn-sm m-1">
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
                     <a href="/usuarios/editar/{{$usuario->id}}" class="btn btn-info btn-sm m-1">
-                        <i class="fas fa-external-link-alt"></i>
+                        <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                     <form method="post" action="/usuarios/remover/{{$usuario->id}}" onsubmit="return confirm('Você tem certeza que deseja excluir o usuário {{addslashes($usuario->nome)}}')">
                         @csrf

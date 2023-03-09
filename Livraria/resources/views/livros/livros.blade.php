@@ -2,7 +2,7 @@
 
 
 @section('cabecalho')
-    Vitrine de livros
+    Livros
 @endsection
 
 @section('conteudo')
@@ -21,7 +21,7 @@
             <thead>
                 <tr class="table-primary">
                     
-                    <th scope="col">IMAGEM</th>
+                    
                     <th scope="col">ISBN</th>
                     <th scope="col">NOME DO LIVRO</th>
                     <th scope="col">EDIÇÃO</th>
@@ -37,15 +37,7 @@
             </thead>
             <tbody>
                 @foreach ($livros as $livro)
-                    @php
-                        $dados = $livro->imagem;
-                        $caminhoImagem = json_decode($dados, true)['imagem'];
-                    @endphp
-
-                    <tr>
-                        <td>
-                            <img src="imagem/{{ $caminhoImagem}}" alt="{{$livro->imagem}}">
-                        </td>
+                    <tr>   
                         <td>{{ $livro->isbn}}</td>
                         <td>{{ $livro->nome}}</td>
                         <td>{{ $livro->edicao}}</td>

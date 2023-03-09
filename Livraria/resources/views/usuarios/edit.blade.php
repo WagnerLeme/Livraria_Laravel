@@ -13,6 +13,7 @@
 
         <div class="container">
             <div class="row">
+                
                 <div class="col col-8">
                     <label for="nome">Nome</label>
                     <input type="text" class="form-control mb-3" name="nome" value="{{$usuario->nome}}">

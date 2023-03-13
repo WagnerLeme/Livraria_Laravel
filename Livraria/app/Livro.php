@@ -20,7 +20,8 @@ class Livro extends Model
         'idioma',
         'numeroPagina', 
         'categoria', 
-        'quantidade'
+        'quantidade',
+        'Teste'
     ];
 
     public function livro()
